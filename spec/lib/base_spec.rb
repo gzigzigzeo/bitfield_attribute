@@ -1,9 +1,5 @@
 require 'spec_helper'
 
-class TestBitfield < BitfieldAttribute::Base
-  bits :first, :second, :last
-end
-
 describe TestBitfield do
   let(:storage) { { bitfield: 0 } }
 
@@ -54,6 +50,8 @@ describe TestBitfield do
       bitfield.attributes = { first: 1 }
 
       expect(bitfield.value).to eq(1)
+
+      expect(bitfield.attributes).to eq({ first: true, second: false, last: false })
     end
   end
 

@@ -9,6 +9,7 @@ SimpleCov.start do
 end
 
 require 'bitfield_attribute'
+require 'support/test_bitfield'
 
 RSpec.configure do |config|
   config.order = :random

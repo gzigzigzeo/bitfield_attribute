@@ -24,13 +24,11 @@ module BitfieldAttribute
       end
 
       def i18n_scope
-        container = name.deconstantize
-        return super if container.blank?
+        parent = name.deconstantize
+        return super if parent.blank?
 
-        container = container.constantize
-        if container.respond_to?(:i18n_scope)
-          return container.i18n_scope
-        end
+        parent = parent.constantize
+        return parent.i18n_scope if parent.respond_to?(:i18n_scope)
 
         super
       end
@@ -118,7 +116,6 @@ module BitfieldAttribute
       end
     end
 
-#    TRUE_VALUES = [true, 1, '1', 't', 'T', 'true', 'TRUE'].to_set
     INTEGER_SIZE = 32
   end
 end
