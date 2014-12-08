@@ -1,6 +1,7 @@
 require 'active_model'
 require 'active_support/hash_with_indifferent_access'
 require 'active_support/core_ext/object/inclusion'
+require 'active_record/connection_adapters/column'
 
 module BitfieldAttribute
   class Base
@@ -10,7 +11,7 @@ module BitfieldAttribute
     class << self
       def bits(*keys)
         if keys.size > INTEGER_SIZE
-          raise ArgumentError, 'Too many bit names for 16-bit integer'
+          raise ArgumentError, "Too many bit names for #{INTEGER_SIZE}-bit integer"
         end
 
         @bit_keys = keys.map(&:to_sym)
@@ -90,7 +91,7 @@ module BitfieldAttribute
     def update(hash)
       hash.symbolize_keys.each do |key, value|
         if @values.keys.include?(key)
-          @values[key] = value.in?(TRUE_VALUES)
+          @values[key] = value.in?(ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES)
         end
       end
 
@@ -117,7 +118,7 @@ module BitfieldAttribute
       end
     end
 
-    TRUE_VALUES = [true, 1, '1', 't', 'T', 'true', 'TRUE'].to_set
-    INTEGER_SIZE = 16
+#    TRUE_VALUES = [true, 1, '1', 't', 'T', 'true', 'TRUE'].to_set
+    INTEGER_SIZE = 32
   end
 end

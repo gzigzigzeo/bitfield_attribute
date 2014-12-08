@@ -11,9 +11,9 @@ describe TestBitfield do
     it 'raises if too many values given' do
       expect {
         class WrongBitfield < BitfieldAttribute::Base
-          bits *([:a] * 20)
+          bits *([:a] * 48)
         end
-      }.to raise_error(ArgumentError, 'Too many bit names for 16-bit integer')
+      }.to raise_error(ArgumentError, 'Too many bit names for 32-bit integer')
     end
 
     it 'gets initial bits from value' do

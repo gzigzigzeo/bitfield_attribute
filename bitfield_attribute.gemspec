@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "simplecov"
 
   spec.add_dependency "activemodel"
+  spec.add_dependency "activerecord"
 end
