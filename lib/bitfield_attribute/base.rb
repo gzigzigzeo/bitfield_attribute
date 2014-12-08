@@ -87,7 +87,7 @@ module BitfieldAttribute
     def update(hash)
       hash.symbolize_keys.each do |key, value|
         if @values.keys.include?(key)
-          @values[key] = value.in?(ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES)
+          @values[key] = true_value?(value)
         end
       end
 
@@ -112,6 +112,10 @@ module BitfieldAttribute
 
         @instance[@attribute] = bits
       end
+    end
+
+    def true_value?(value)
+      value.in?(ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES)
     end
 
     INTEGER_SIZE = 32
