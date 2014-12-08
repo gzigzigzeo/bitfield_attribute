@@ -71,14 +71,27 @@ describe TestBitfield do
           attributes: {
             test_bitfield: {
               first: 'First field'
+            },
+            'bit_field/user/notification_settings' => {
+              second: 'Second field'
             }
           }
         }
       )
     end
 
-    it 'returns correct field name' do
-      expect(described_class.human_attribute_name(:first)).to eq('First field')
+    context 'non-namespaced model' do
+      it 'returns correct field name' do
+        expect(described_class.human_attribute_name(:first)).to eq('First field')
+      end
+    end
+
+    context 'namespaced model' do
+      subject { BitField::User::NotificationSettings.new(storage, :bitfield) }
+
+      it 'returns correct field name' do
+        expect(subject.class.human_attribute_name(:second)).to eq('Second field')
+      end
     end
   end
 end

@@ -23,16 +23,6 @@ module BitfieldAttribute
         @bit_keys
       end
 
-      def i18n_scope
-        parent = name.deconstantize
-        return super if parent.blank?
-
-        parent = parent.constantize
-        return parent.i18n_scope if parent.respond_to?(:i18n_scope)
-
-        super
-      end
-
       private
       def define_bit_methods
         bit_keys.each do |key|
