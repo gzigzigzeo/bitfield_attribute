@@ -9,12 +9,20 @@ module BitfieldAttribute
     extend ActiveModel::Translation
 
     class << self
-      def bits(*keys)
-        if keys.size > INTEGER_SIZE
-          raise ArgumentError, "Too many bit names for #{INTEGER_SIZE}-bit integer"
+      def define_bits(*keys)
+        if @keys.present?
+          raise ArgumentError, 'Define all your bits with a single #define_bits statement'
         end
 
         @keys = keys.map(&:to_sym)
+
+        if @keys.uniq.size != @keys.size
+          raise ArgumentError, "Bit names are not uniq"
+        end
+
+        if @keys.size > INTEGER_SIZE
+          raise ArgumentError, "Too many bit names for #{INTEGER_SIZE}-bit integer"
+        end
 
         define_bit_methods
       end
