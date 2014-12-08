@@ -14,18 +14,18 @@ module BitfieldAttribute
           raise ArgumentError, "Too many bit names for #{INTEGER_SIZE}-bit integer"
         end
 
-        @bit_keys = keys.map(&:to_sym)
+        @keys = keys.map(&:to_sym)
 
         define_bit_methods
       end
 
-      def bit_keys
-        @bit_keys
+      def keys
+        @keys
       end
 
       private
       def define_bit_methods
-        bit_keys.each do |key|
+        keys.each do |key|
           define_setter(key)
           define_getter(key)
         end
@@ -51,7 +51,7 @@ module BitfieldAttribute
       @instance = instance
       @attribute = attribute
 
-      keys = self.class.bit_keys
+      keys = self.class.keys
 
       @values = keys.zip([false] * keys.size)
       @values = Hash[@values]
