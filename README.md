@@ -82,7 +82,7 @@ user[:notification_settings]                # => 3
 ```ruby
 en:
   activemodel:
-    user/notification_settings:
+    "user/notification_settings":
       weekly_digest: 'Weekly top sellers digest'
       announces: 'Announces'
       events: 'Invitations'
