@@ -64,7 +64,32 @@ user.notification_settings.attributes       # => { weekly_digest: true, announce
 user[:notification_settings]                # => 3
 ```
 
-## Forms
+## ActiveModel I18n & forms
+
+Modify your bitfield class:
+
+```ruby
+class User::NotificationSettings
+  include BitfieldAttribute::Base
+  extend  ActiveModel::Naming
+  extend  ActiveModel::Translation
+
+  define_bits :weekly_digest, :announces, :events
+end
+```
+
+Add this to your locale file:
+
+```ruby
+en:
+  activemodel:
+    "user/notification_settings":
+      weekly_digest: 'Weekly top sellers digest'
+      announces: 'Announces'
+      events: 'Invitations'
+```
+
+Use forms:
 
 ```slim
 = form_for @user do |form|
@@ -75,17 +100,6 @@ user[:notification_settings]                # => 3
   ...
 
   = form.submit 'Save'
-```
-
-## I18n
-
-```ruby
-en:
-  activemodel:
-    "user/notification_settings":
-      weekly_digest: 'Weekly top sellers digest'
-      announces: 'Announces'
-      events: 'Invitations'
 ```
 
 ## Contributing

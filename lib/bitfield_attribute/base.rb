@@ -8,11 +8,6 @@ module BitfieldAttribute
   module Base
     extend ActiveSupport::Concern
 
-    included do
-      extend ActiveModel::Naming
-      extend ActiveModel::Translation
-    end
-
     module ClassMethods
       def define_bits(*keys)
         if @keys.present?
