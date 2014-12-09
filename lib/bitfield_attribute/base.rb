@@ -1,14 +1,19 @@
 require 'active_model'
 require 'active_support/hash_with_indifferent_access'
 require 'active_support/core_ext/object/inclusion'
+require 'active_support/concern'
 require 'active_record/connection_adapters/column'
 
 module BitfieldAttribute
-  class Base
-    extend ActiveModel::Naming
-    extend ActiveModel::Translation
+  module Base
+    extend ActiveSupport::Concern
 
-    class << self
+    included do
+      extend ActiveModel::Naming
+      extend ActiveModel::Translation
+    end
+
+    module ClassMethods
       def define_bits(*keys)
         if @keys.present?
           raise ArgumentError, 'Define all your bits with a single #define_bits statement'

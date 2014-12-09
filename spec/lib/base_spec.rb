@@ -9,7 +9,9 @@ describe TestBitfield do
 
     it 'raises if too many values given' do
       expect {
-        class WrongBitfield1 < BitfieldAttribute::Base
+        class WrongBitfield1
+          include BitfieldAttribute::Base
+
           define_bits *(:A..:z).to_a
         end
       }.to raise_error(ArgumentError, 'Too many bit names for 32-bit integer')
@@ -17,7 +19,9 @@ describe TestBitfield do
 
     it 'raises if non-uniq values given' do
       expect {
-        class WrongBitfield2 < BitfieldAttribute::Base
+        class WrongBitfield2
+          include BitfieldAttribute::Base
+
           define_bits :a, :a, :a
         end
       }.to raise_error(ArgumentError, 'Bit names are not uniq')
@@ -25,7 +29,9 @@ describe TestBitfield do
 
     it 'raises if bits are defining with multiple statements' do
       expect {
-        class WrongBitfield3 < BitfieldAttribute::Base
+        class WrongBitfield3
+          include BitfieldAttribute::Base
+
           define_bits :a, :b, :c
           define_bits :d, :e, :f
         end
