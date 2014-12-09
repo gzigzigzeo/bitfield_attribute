@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = BitfieldAttribute::VERSION
   spec.authors       = ["Viktor Sokolov"]
   spec.email         = ["gzigzigzeo@evilmartians.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Bitfield value object for ActiveModel}
+  spec.description   = %q{Bitfield value object for ActiveModel. No hidden definitions. No callbacks. Magicless.}
+  spec.homepage      = "https://github.com/gzigzigzeo/bitfield_attribute"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
