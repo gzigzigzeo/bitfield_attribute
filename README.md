@@ -80,13 +80,14 @@ end
 
 Add this to your locale file:
 
-```ruby
+```yaml
 en:
   activemodel:
-    "user/notification_settings":
-      weekly_digest: 'Weekly top sellers digest'
-      announces: 'Announces'
-      events: 'Invitations'
+    attributes:
+      "user/notification_settings":
+        weekly_digest: 'Weekly top sellers digest'
+        announces: 'Announces'
+        events: 'Invitations'
 ```
 
 Use forms:
