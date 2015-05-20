@@ -17,4 +17,14 @@ module BitField
       define_bits :second
     end
   end
+
+  class DatabaseUser < ActiveRecord::Base
+    def bitfield
+      @bitfield ||= TestBitfield.new(self, :bitfield)
+    end
+
+    def bitfield=(value)
+      bitfield.attributes = value
+    end
+  end
 end
