@@ -79,19 +79,23 @@ module BitfieldAttribute
       @values.freeze
     end
 
-    def attributes=(hash)
+    def attributes=(value)
       @values.each { |key, _| @values[key] = false }
-      update(hash)
+      update(value)
     end
 
-    def update(hash)
-      hash.symbolize_keys.each do |key, value|
-        if @values.keys.include?(key)
-          @values[key] = true_value?(value)
+    def update(value)
+      if value.is_a?(Fixnum)
+        write_bits(value)
+      else
+        value.symbolize_keys.each do |key, value|
+          if @values.keys.include?(key)
+            @values[key] = true_value?(value)
+          end
         end
+        write_bits
       end
 
-      write_bits
     end
 
     private
@@ -104,14 +108,15 @@ module BitfieldAttribute
       end
     end
 
-    def write_bits
-      0.tap do |bits|
+    def write_bits(bits = nil)
+      if bits.nil?
+        bits = 0
         @values.keys.each.with_index do |name, index|
           bits = bits | (2 ** index) if @values[name]
         end
-
-        @instance[@attribute] = bits
       end
+
+      @instance[@attribute] = bits
     end
 
     def true_value?(value)

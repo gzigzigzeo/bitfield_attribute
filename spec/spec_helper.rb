@@ -8,8 +8,12 @@ SimpleCov.start do
   add_filter 'spec'
 end
 
+require 'active_record'
+ActiveRecord::Base.establish_connection(database: ':memory:', adapter: 'sqlite3')
+
 require 'bitfield_attribute'
 require 'support/test_bitfield'
+
 
 RSpec.configure do |config|
   config.order = :random
