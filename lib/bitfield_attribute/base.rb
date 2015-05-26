@@ -108,8 +108,10 @@ module BitfieldAttribute
       end
     end
 
-    def write_bits(bits = nil)
-      if bits.nil?
+    def write_bits(predefined_bits = nil)
+      if predefined_bits.present?
+        bits = predefined_bits
+      else
         bits = 0
         @values.keys.each.with_index do |name, index|
           bits = bits | (2 ** index) if @values[name]
@@ -117,6 +119,10 @@ module BitfieldAttribute
       end
 
       @instance[@attribute] = bits
+
+      if predefined_bits
+        read_bits
+      end
     end
 
     def true_value?(value)
