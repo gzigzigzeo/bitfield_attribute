@@ -95,7 +95,10 @@ module BitfieldAttribute
         end
         write_bits
       end
+    end
 
+    def as_json(options = nil)
+      attributes
     end
 
     private
