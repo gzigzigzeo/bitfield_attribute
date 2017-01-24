@@ -129,7 +129,13 @@ module BitfieldAttribute
     end
 
     def true_value?(value)
-      value.in?(ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES)
+      if Rails::VERSION::MAJOR == 5
+        ActiveRecord::Type::Boolean.new.cast(value)
+      elsif Rails::VERSION::MINOR < 2
+        ActiveRecord::ConnectionAdapters::Column.value_to_boolean(value)
+      else
+        ActiveRecord::Type::Boolean.new.type_cast_from_user(value)
+      end
     end
 
     INTEGER_SIZE = 32
