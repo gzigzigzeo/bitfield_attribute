@@ -129,9 +129,9 @@ module BitfieldAttribute
     end
 
     def true_value?(value)
-      if Rails::VERSION::MAJOR == 5
+      if ActiveRecord::VERSION::MAJOR == 5
         ActiveRecord::Type::Boolean.new.cast(value)
-      elsif Rails::VERSION::MINOR < 2
+      elsif ActiveRecord::VERSION::MINOR < 2
         ActiveRecord::ConnectionAdapters::Column.value_to_boolean(value)
       else
         ActiveRecord::Type::Boolean.new.type_cast_from_user(value)
