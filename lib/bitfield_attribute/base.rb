@@ -85,7 +85,7 @@ module BitfieldAttribute
     end
 
     def update(value)
-      if value.is_a?(Fixnum)
+      if value.is_a?(Integer)
         write_bits(value)
       else
         value.symbolize_keys.each do |key, value|
