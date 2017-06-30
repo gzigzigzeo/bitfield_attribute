@@ -2,6 +2,12 @@
 
 Bitfield value object for ActiveModel. No hidden definitions. No callbacks. Magicless.
 
+[![Build Status](https://travis-ci.org/gzigzigzeo/bitfield_attribute.svg)](http://travis-ci.org/gzigzigzeo/bitfield_attribute)
+
+<a href="https://evilmartians.com/?utm_source=bitfield_attribute-gem">
+<img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54">
+</a>
+
 ## Installation
 
 Add this line to your application's Gemfile:
