@@ -129,7 +129,7 @@ module BitfieldAttribute
     end
 
     def true_value?(value)
-      if ActiveRecord::VERSION::MAJOR == 5
+      if ActiveRecord::VERSION::MAJOR.in?([5, 6])
         ActiveRecord::Type::Boolean.new.cast(value)
       elsif ActiveRecord::VERSION::MINOR < 2
         ActiveRecord::ConnectionAdapters::Column.value_to_boolean(value)
