@@ -23,6 +23,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "simplecov"
 
-  spec.add_dependency "activemodel", ">= 4.0", "< 6"
-  spec.add_dependency "activerecord", ">= 4.0", "< 6"
+  spec.add_dependency "activemodel", ">= 4.0", "< 7"
+  spec.add_dependency "activerecord", ">= 4.0", "< 7"
 end
